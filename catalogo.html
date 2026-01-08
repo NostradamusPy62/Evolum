@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Catálogo — EVOLUM</title>
+  <meta name="description" content="Catálogo completo EVOLUM: buscá, filtrá y consultá por WhatsApp. Envíos a todo el país.">
+  <meta name="theme-color" content="#0B0D12">
+  <link rel="icon" type="image/png" href="assets/img/evologo.png" sizes="64x64">
+  <link rel="apple-touch-icon" href="assets/img/evologo.png">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800;900&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/evolum.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <a class="sr-only" href="#main">Saltar al contenido</a>
+
+  <!-- HEADER -->
+  <header class="e-header" role="banner" aria-label="Encabezado">
+    <div class="e-container">
+      <a href="index.html" class="e-brand" aria-label="EVOLUM Inicio">
+        <img class="logo-img" src="assets/img/evologo.png" width="40" height="40" alt="EVOLUM — Volver al inicio" decoding="async">
+        <span class="brand-name">EVOLUM</span>
+      </a>
+
+      <nav class="e-nav" role="navigation" aria-label="Navegación principal">
+        <button class="nav-toggle" aria-expanded="false" aria-controls="navmenu" aria-label="Abrir menú">
+          <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+        </button>
+        <ul id="navmenu" class="nav-list" role="menu">
+          <li role="none"><a role="menuitem" href="index.html">Inicio</a></li>
+          <li role="none"><a role="menuitem" href="guia.html">Guía</a></li>
+          <li role="none"><a role="menuitem" href="catalogo.html" aria-current="page">Catálogo</a></li>
+          <li role="none"><a role="menuitem" href="comprar.html">Cómo comprar</a></li>
+          <li role="none"><a role="menuitem" href="contacto.html">Contacto</a></li>
+        </ul>
+      </nav>
+
+      <a class="e-btn e-btn--primary ripple" target="_blank" rel="noopener" href="https://wa.me/595981838707">WhatsApp</a>
+    </div>
+  </header>
+
+  <main id="main" role="main">
+    <!-- HERO CORTO DEL CATÁLOGO -->
+    <section class="section io-up" aria-label="Encabezado del catálogo">
+      <div class="e-container">
+        <h1 class="center">Catálogo completo EVOLUM</h1>
+        <p class="lead center">Buscá, filtrá y ordená. Cada tarjeta te lleva directo a WhatsApp para consultar stock, sabores y coordinar envío.</p>
+
+        <div class="center-wrap" style="margin-top:10px">
+          <span class="badge">✔︎ Stock real</span>
+          <span class="badge">🧾 Comprobante</span>
+          <span class="badge">🚚 Envíos a todo el país</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTROLES + GRID (usa tu JS oficial) -->
+    <section id="catalogo" class="catalog section io-up" aria-labelledby="catalogo-title">
+      <div class="e-container">
+        <h2 id="catalogo-title" class="center">Buscador y filtros</h2>
+        <p class="lead center">Tip: probá términos como “proteína”, “creatina”, “pre” o “vitamina”.</p>
+
+        <form class="catalog-controls center-wrap" role="search" aria-label="Buscar y filtrar productos" onsubmit="event.preventDefault();">
+          <label><span class="sr-only">Buscar</span>
+            <input id="q" type="search" placeholder="Buscar producto…" aria-label="Buscar producto" />
+          </label>
+          <label><span class="sr-only">Categoría</span>
+            <select id="cat" aria-label="Filtrar por categoría">
+              <option value="all">Todas las categorías</option>
+              <option value="Whey">Whey Protein</option>
+              <option value="Creatina">Creatinas</option>
+              <option value="Pre">Pre-entrenos</option>
+              <option value="Otros">Otros</option>
+            </select>
+          </label>
+          <label><span class="sr-only">Orden</span>
+            <select id="sort" aria-label="Ordenar por">
+              <option value="recom">Surtido recomendado</option>
+              <option value="price-asc">Precio: menor a mayor</option>
+              <option value="price-desc">Precio: mayor a menor</option>
+              <option value="name-asc">Nombre A→Z</option>
+              <option value="name-desc">Nombre Z→A</option>
+            </select>
+          </label>
+          <button class="e-btn e-btn--ghost ripple" type="button" id="clear">Limpiar</button>
+        </form>
+
+        <!-- aria-live para anunciar resultados -->
+        <p id="catalog-live" class="sr-only" aria-live="polite"></p>
+
+        <!-- GRID de productos (inyectado por tu JS) -->
+        <div id="grid" class="catalog-grid" role="list"></div>
+        <script id="product-ld" type="application/ld+json"></script>
+        <!-- PAGINACIÓN -->
+<nav id="pager" class="catalog-pager" role="navigation" aria-label="Paginación de catálogo">
+  <button id="page-prev" class="e-btn e-btn--ghost ripple" type="button" aria-label="Página anterior">‹ Anterior</button>
+  <span id="page-count" class="count" aria-live="polite" aria-atomic="true">Página 1 de 1</span>
+  <button id="page-next" class="e-btn e-btn--ghost ripple" type="button" aria-label="Página siguiente">Siguiente ›</button>
+</nav>
+
+
+        <!-- AYUDA DE COMPRA / CONSEJOS (estático, inmersivo) -->
+        <section class="section" aria-labelledby="ayuda-compra">
+          <h3 id="ayuda-compra" class="center">Cómo elegir mejor</h3>
+          <div class="values-grid" style="margin-top:12px">
+            <article class="value-card">
+              <div class="icon">🧮</div>
+              <h3>Costo por porción</h3>
+              <p>Dividí el precio por el total de porciones. Compará entre marcas similares para elegir con la cabeza.</p>
+            </article>
+            <article class="value-card">
+              <div class="icon">🥛</div>
+              <h3>Whey vs Isolate</h3>
+              <p><b>Whey</b> es más económica y suficiente para la mayoría. <b>Isolate</b> suele tener menos lactosa y carbos.</p>
+            </article>
+            <article class="value-card">
+              <div class="icon">⚡</div>
+              <h3>Creatina monohidratada</h3>
+              <p>Priorizá monohidrato simple (3–5 g/día). La constancia importa más que la hora del día.</p>
+            </article>
+            <article class="value-card">
+              <div class="icon">⏰</div>
+              <h3>Timing realista</h3>
+              <p>Proteína post-entreno o entre comidas; pre-entreno alejado de tus horas de sueño si tiene cafeína.</p>
+            </article>
+          </div>
+        </section>
+
+        <!-- MINI FAQ DE COMPRA (acordeón usa tu initFAQ) -->
+        <section class="section" aria-labelledby="mini-faq-title">
+          <h3 id="mini-faq-title" class="center">Preguntas frecuentes de compra</h3>
+          <div class="accordion" role="region" aria-label="Preguntas frecuentes de compra" style="margin-top:12px;max-width:900px;margin-left:auto;margin-right:auto">
+            <div class="acc-item">
+              <button class="acc-trigger" aria-expanded="false">¿Cómo confirmo sabor y stock?</button>
+              <div class="acc-panel"><p>Desde el botón “Consultar” de cada producto abrís WhatsApp con el nombre y precio. Te confirmamos sabor/stock en el momento.</p></div>
+            </div>
+            <div class="acc-item">
+              <button class="acc-trigger" aria-expanded="false">¿Qué medios de pago aceptan?</button>
+              <div class="acc-panel"><p>Transferencia o efectivo</p></div>
+            </div>
+            <div class="acc-item">
+              <button class="acc-trigger" aria-expanded="false">¿Hacen envíos a todo el país?</button>
+              <div class="acc-panel"><p>Sí. Coordinamos por la empresa de encomiendas que prefieras; te pasamos número de guía. Plazos estimados 48-72 h según ciudad.</p></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- CTA -->
+        <div class="center-wrap" style="margin-top:18px">
+          <a class="e-btn e-btn--primary ripple" target="_blank" rel="noopener" href="https://wa.me/595981838707">Quiero asesoría por WhatsApp</a>
+          <a class="e-btn e-btn--ghost ripple" href="guia.html">Leer guía completa</a>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="e-footer" role="contentinfo" aria-label="Pie de página">
+    <div class="e-container footer-top">
+      <div class="footer-brand">
+        <img class="logo-img footer" src="assets/img/evologo.png" width="180" height="45" alt="EVOLUM" decoding="async">
+        <p class="foot-claim">Suplementos premium del Paraguay</p>
+        <p class="foot-tagline">Tu progreso comienza aquí</p>
+      </div>
+
+      <nav class="footer-nav" aria-label="Menú rápido">
+        <h4 class="footer-title">Navegación</h4>
+        <a href="index.html">Inicio</a>
+        <a href="guia.html">Guía de productos</a>
+        <a href="catalogo.html">Catálogo</a>
+        <a href="comprar.html">Cómo comprar</a>
+        <a href="contacto.html">Contacto</a>
+      </nav>
+
+      <div class="footer-contact">
+        <h4 class="footer-title">Contacto</h4>
+        <div class="contact-item">
+          <span class="contact-icon">📍</span>
+          <p>Ciudad del Este, Alto Paraná<br>Paraguay</p>
+        </div>
+
+        <div class="footer-social">
+          <a href="https://wa.me/595981838707" target="_blank" rel="noopener" class="social-link whatsapp" aria-label="WhatsApp">
+            <img src="assets/img/icons/logo-whatsapp.jpg" alt="WhatsApp" width="32" height="32" loading="lazy">
+            <div class="social-text">
+              <span class="social-label">WhatsApp</span>
+              <span class="social-handle">+595 981 838707</span>
+            </div>
+          </a>
+
+          <a href="https://www.instagram.com/evolum.py?igsh=MXB5MGEwMmx3cmtwdQ==" target="_blank" rel="noopener" class="social-link instagram" aria-label="Instagram">
+            <img src="assets/img/icons/logo-instagram.jpg" alt="Instagram" width="32" height="32" loading="lazy">
+            <div class="social-text">
+              <span class="social-label">Instagram</span>
+              <span class="social-handle">@evolum.py</span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-legal">
+      <p class="legal">Los suplementos no sustituyen una alimentación equilibrada. Consultá con un profesional de la salud antes de comenzar cualquier suplementación.</p>
+      <p class="copy">© 2025 EVOLUM. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+  <!-- JS -->
+  <script defer src="assets/js/evolum.js"></script>
+</body>
+</html>
